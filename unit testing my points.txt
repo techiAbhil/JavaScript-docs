@@ -1,0 +1,12 @@
+Unit testing:
+
+1. it | test  => both block anything will work similarly 
+
+2. methods on screen of '@testing-library/react'
+
+	precde with these keywors =>	findAllBy | findBy | getBy | getAllBy | queryBy | queryAllBy * [Text, Role, TestId, LabelText]
+
+3. async await only works with findBy | findAllBy methods
+
+
+4. Enzyme is a powerful test library where as Zest is a freamework

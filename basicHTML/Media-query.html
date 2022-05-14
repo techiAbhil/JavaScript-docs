@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.parent {
+				display: flex;
+				justify-content: space-between;
+			}
+			#div1 {
+				background: violet;
+				margin: 5px;
+			}
+
+			#div2 {
+				background: pink;
+				margin: 5px;
+			}
+
+			@media screen and (max-width: 468px) {
+				.parent {
+					display: flex;
+					flex-direction: column;
+				}
+			}
+
+			/* 
+                1. @media (max-width: 468px) => in this case the styling will be applied to all screen & print devices
+                2. @media screen and (max-width: 468px)  => use only if media queries should act only according to screen
+                3. @media(orientation: landscape) => we can also apply media queries depending upon orientation
+                4. if the same styles defined after media queries again then media queries will be ignored
+            */
+		</style>
+	</head>
+	<body>
+		<p>
+			Should display 2 divs on same row on Desktop & on mobile only one div on
+			each row
+		</p>
+		<div class="parent">
+			<div id="div1">
+				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate
+				recusandae vitae dolor ipsa maxime ullam, repellendus provident
+				voluptatibus quaerat beatae et incidunt molestiae officia sed
+				repudiandae explicabo molestias unde hic!
+			</div>
+
+			<div id="div2">
+				Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate
+				recusandae vitae dolor ipsa maxime ullam, repellendus provident
+				voluptatibus quaerat beatae et incidunt molestiae officia sed
+				repudiandae explicabo molestias unde hic!
+			</div>
+		</div>
+	</body>
+</html>

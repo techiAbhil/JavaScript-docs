@@ -1,0 +1,11 @@
+px => absolute value no matter where it is defined
+% =>  relative to parent 
+
+viewport units:
+vw & vh => percent value of entire screen but unlike percentage it does not obey parent 
+
+
+font specific units: 
+
+rem => relative to root like (normal pixels for screen its constant throught)
+em => relative to parent font size (better to avoid it, beahves similar to percentage unit)

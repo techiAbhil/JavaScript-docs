@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				font-size: 1.2rem;
+			}
+			.container {
+				display: flex;
+				justify-content: center;
+				flex-direction: column;
+			}
+			input {
+				width: 450px;
+				height: 40px;
+				font-size: 1.5rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<input type="text" name="" id="" />
+			<div>Default behaviour: <span id="span1"></span></div>
+			<div>Debounce behaviour: <span id="span2"></span></div>
+		</div>
+		<script>
+			const input = document.querySelector('input');
+			const spanDefault = document.getElementById('span1');
+			const spanDebounce = document.getElementById('span2');
+			input.addEventListener('input', (e) => {
+				const text = e.target.value;
+				spanDefault.textContent = text;
+				debounce(text);
+				throttle(text);
+			});
+
+			let debounceTimeout;
+			const debounce = (text, delay = 1000) => {
+				clearTimeout(debounceTimeout);
+				debounceTimeout = setTimeout(() => {
+					spanDebounce.textContent = text;
+				}, delay);
+			};
+		</script>
+	</body>
+</html>

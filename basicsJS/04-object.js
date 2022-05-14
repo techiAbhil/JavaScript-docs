@@ -38,10 +38,10 @@ const testObj = {
 	firstName: 'Abhialsh',
 	lastName: 'Virat',
 	getName: function () {
-		`${this.firstName} ${this.lastName}`;
+		return `${this.firstName} ${this.lastName}`;
 	},
 };
-
+console.log(testObj.getName());
 const createdObj = Object.create(testObj);
 console.dir(createdObj);
 console.log(createdObj.getName());
@@ -205,7 +205,7 @@ console.dir('before setting prototype of obj', setProtoParentObj);
 
 /**
  * One important note here the below statemnt Object.setPrototypeOf
- * will be exicuted before printing above console log
+ * will be executed before printing above console log
  * so both above & below console.log statment will provide the same result
  */
 

@@ -3,14 +3,15 @@
  */
 
 function fun1() {
-	// named function expression
+	// statement function or declarative function
+	// these functions can be called even before declaring it
 	console.log('1 way of declaring functions');
 }
 console.dir('fun1 => ', fun1);
 fun1();
 
 const fun2 = function () {
-	// anonymous function expression
+	// named function
 	console.log('2nd way of declaring functions');
 };
 console.dir('fun2 => ', fun2);
@@ -81,3 +82,59 @@ var obj = {
 
 obj.b(); // prints undefined, Window {...} (or the global object)
 obj.c(); // prints 10, Object {...}
+
+function fun() {
+	var i = 10;
+
+	function getNamedFunction() {
+		console.log(this);
+	}
+
+	const getArrowFunction = () => {
+		console.log(this);
+	};
+
+	getNamedFunction(); //this will point to window/global object
+	getArrowFunction(); //this will point to window/global object
+
+	getNamedFunction.call(i); // this will point to i
+	getArrowFunction.call(i); //this will still point to window/global object
+}
+
+fun();
+
+/**
+ * Key points:
+ *  1. When this is used within an object's function, it will point to current object
+ * 	2. When this is used within function it will always point to window object
+ * 	3. In both of the above cases the arrow function will always point to window object (even if we bind the object)
+ */
+
+// uncomment following function & run it  to check
+//  function fun(name) {
+//     this.name = name;
+//     this.printName = function() {
+//         console.log(this, this.name) //this will point to current object
+//     }
+
+//     this.printNameArrow = () => {
+//         console.log(this, this.name) //this will point to current object
+//     }
+// }
+
+// fun.prototype.getName = function() {
+//     console.log(this, this.name)
+//     // point to current object
+// }
+
+// fun.prototype.getNameArrow = () => {
+//     console.log(this, this.name)
+//     // point to window object
+// }
+
+// const f = new fun('abhialsh');
+
+// f.printName();
+// f.printNameArrow();
+// f.getName();
+// f.getNameArrow();
