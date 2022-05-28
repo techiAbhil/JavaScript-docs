@@ -1,22 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-	</head>
-	<body>
-		<h1>Please append the file name in URL</h1>
-		<h3>e.g: index.html?file=01-data-types.js</h3>
-	</body>
-	<script>
-		window.onload = () => {
-			const urlParams = new URLSearchParams(window.location.search);
-			const fileName = urlParams.get('file');
-			const scriptEL = document.createElement('script');
-			scriptEL.setAttribute('src', fileName);
-			document.head.appendChild(scriptEL);
-		};
-	</script>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="shortcut icon" href="#" />
+	<title>Document</title>
+</head>
+
+<body>
+	<h2>Please append the file name in URL or Select a file from dropdown</h2>
+	<select style="height: 30px;" onchange="onSelectHandler()" name="dropdown" id="dropdown">
+		<option value="">Please select a file</option>
+	</select>
+</body>
+<script>
+	window.onload = async () => {
+		const urlParams = new URLSearchParams(window.location.search);
+		const fileName = urlParams.get('file');
+
+		const jsonData = await fetch('./files.json')
+		const fileNames = await jsonData.json()
+		const dropdown = document.getElementById('dropdown');
+		fileNames.forEach((name) => {
+			dropdown.append(new Option(name, name));
+		});
+		loadFile(fileName);
+	};
+
+	function loadFile(fileName) {
+		if (!fileName) return;
+		const scriptEL = document.createElement('script');
+		scriptEL.setAttribute('src', fileName);
+		scriptEL.setAttribute("type", "text/javascript");
+		scriptEL.setAttribute("async", true);
+		scriptEL.addEventListener("error", () => {
+			console.log("Error loading script")
+		});
+		document.head.appendChild(scriptEL);
+		document.getElementById('dropdown').value = fileName;
+	}
+
+	function onSelectHandler() {
+		const selectedFile = document.getElementById('dropdown').value;
+		if (selectedFile) {
+			window.location.href = `${window.location.pathname}?file=${selectedFile}`;
+		}
+	}
+</script>
+
 </html>

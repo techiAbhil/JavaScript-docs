@@ -189,7 +189,7 @@ console.log(
  * Object.setPrototypeOf(obj, prototype) set the prototypeof object
  * It is a slow process
  * Note: insted of this method Object.create is recommended as it creates a new object
- *
+ * Note: Object.setPrototypeOf only Object is accepted as second parameter (we can not assign a function)
  *
  */
 
