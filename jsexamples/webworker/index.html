@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Worker Example</title>
+</head>
+
+<body>
+    <button onclick="sumOfNums()">CPU intensive calculation</button>
+    <button onclick="changeBackgound()">Change Background</button>
+</body>
+<script>
+    var worker = new Worker("./worker.js");;
+
+    function sumOfNums() {
+        if (worker) {
+            worker.postMessage("INIT_CALCULATIONS")
+        }
+    }
+
+    worker.onmessage = function (message) {
+        console.log('Message from worker = ', message.data)
+    }
+
+    function changeBackgound() {
+        if (document.body.style.backgroundColor === "yellow") {
+            document.body.style.backgroundColor = "red"
+        } else {
+            document.body.style.backgroundColor = "yellow"
+        }
+    }
+</script>
+
+</html>
